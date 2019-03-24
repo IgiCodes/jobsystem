@@ -16,6 +16,7 @@ class CreateTeamUserTable extends Migration
         Schema::create('team_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

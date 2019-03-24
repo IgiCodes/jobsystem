@@ -16,6 +16,7 @@ class CreateBoardTeamTable extends Migration
         Schema::create('board_team', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

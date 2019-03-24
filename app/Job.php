@@ -41,6 +41,8 @@ class Job extends Model
     protected $deleted_at;
 
     /**
+     * Gets the created at DateTime.
+     *
      * @return \DateTime
      */
     public function getCreatedAt(): DateTime
@@ -49,6 +51,8 @@ class Job extends Model
     }
 
     /**
+     * Sets the created at DateTime.
+     *
      * @param \DateTime $created_at
      */
     public function setCreatedAt(DateTime $created_at): void

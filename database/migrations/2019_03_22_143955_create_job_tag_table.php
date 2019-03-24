@@ -16,6 +16,7 @@ class CreateJobTagTable extends Migration
         Schema::create('job_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,6 +16,7 @@ class CreateTagGroupsTable extends Migration
         Schema::create('tag_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

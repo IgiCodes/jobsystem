@@ -3,12 +3,51 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    /**
+     * @var integer
+     */
+    protected $id;
+    /**
+     * @var string
+     */
+    protected $name;
+    /**
+     * @var string
+     */
+    protected $email;
+    /**
+     * @var string
+     */
+    protected $password;
+    /**
+     * @var \DateTime
+     */
+    protected $email_verified_at;
+    /**
+     * @var string
+     */
+    protected $remember_token;
+    /**
+     * @var \DateTime
+     */
+    protected $created_at;
+    /**
+     * @var \DateTime
+     */
+    protected $updated_at;
+    /**
+     * @var \DateTime
+     */
+    protected $deleted_at;
 
     /**
      * The attributes that are mass assignable.
