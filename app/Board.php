@@ -37,6 +37,22 @@ class Board extends Model
     protected $deleted_at;
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'created_by_user_id',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    /**
      * @return int
      */
     public function getId() : int
@@ -46,10 +62,13 @@ class Board extends Model
 
     /**
      * @param int $id
+     *
+     * @return Board
      */
-    public function setId(int $id) : void
+    public function setId(int $id) : Board
     {
         $this->setAttribute('id', $id);
+        return $this;
     }
 
     /**
@@ -62,10 +81,13 @@ class Board extends Model
 
     /**
      * @param string $name
+     *
+     * @return Board
      */
-    public function setName(string $name) : void
+    public function setName(string $name) : Board
     {
         $this->setAttribute('name', $name);
+        return $this;
     }
 
     /**
@@ -78,10 +100,13 @@ class Board extends Model
 
     /**
      * @param int $created_by_user_id
+     *
+     * @return Board
      */
-    public function setCreatedByUserId(int $created_by_user_id) : void
+    public function setCreatedByUserId(int $created_by_user_id) : Board
     {
         $this->setAttribute('created_by_user_id', $created_by_user_id);
+        return $this;
     }
 
     /**
@@ -94,10 +119,13 @@ class Board extends Model
 
     /**
      * @param \DateTime $created_at
+     *
+     * @return Board
      */
-    public function setCreatedAt(DateTime $created_at) : void
+    public function setCreatedAt(DateTime $created_at) : Board
     {
         $this->setAttribute('created_at', $created_at);
+        return $this;
     }
 
     /**
@@ -110,10 +138,13 @@ class Board extends Model
 
     /**
      * @param \DateTime $updated_at
+     *
+     * @return Board
      */
-    public function setUpdatedAt(DateTime $updated_at) : void
+    public function setUpdatedAt(DateTime $updated_at) : Board
     {
         $this->setAttribute('updated_at', $updated_at);
+        return $this;
     }
 
     /**
@@ -126,11 +157,15 @@ class Board extends Model
 
     /**
      * @param \DateTime $deleted_at
+     *
+     * @return Board
      */
-    public function setDeletedAt(DateTime $deleted_at) : void
+    public function setDeletedAt(DateTime $deleted_at) : Board
     {
         $this->setAttribute('deleted_at', $deleted_at);
+        return $this;
     }
+
 
     public function creator() : BelongsTo
     {

@@ -35,6 +35,135 @@ class JobTag extends Pivot
      * @var \DateTime
      */
     protected $deleted_at;
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'job_id',
+        'tag_id',
+    ];
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    /**
+     * @return int
+     */
+    public function getId() : int
+    {
+        return $this->getAttribute('id');
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return JobTag
+     */
+    public function setId(int $id) : JobTag
+    {
+        $this->setAttribute('id', $id);
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJobId() : int
+    {
+        return $this->getAttribute('job_id');
+    }
+
+    /**
+     * @param int $job_id
+     *
+     * @return JobTag
+     */
+    public function setJobId(int $job_id) : JobTag
+    {
+        $this->setAttribute('job_id', $job_id);
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTagId() : int
+    {
+        return $this->getAttribute('tag_id');
+    }
+
+    /**
+     * @param int $tag_id
+     *
+     * @return JobTag
+     */
+    public function setTagId(int $tag_id) : JobTag
+    {
+        $this->setAttribute('tag_id', $tag_id);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt() : DateTime
+    {
+        return $this->getAttribute('created_at');
+    }
+
+    /**
+     * @param \DateTime $created_at
+     *
+     * @return JobTag
+     */
+    public function setCreatedAt(DateTime $created_at) : JobTag
+    {
+        $this->setAttribute('created_at', $created_at);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt() : DateTime
+    {
+        return $this->getAttribute('updated_at');
+    }
+
+    /**
+     * @param \DateTime $updated_at
+     *
+     * @return JobTag
+     */
+    public function setUpdatedAt(DateTime $updated_at) : JobTag
+    {
+        $this->setAttribute('updated_at', $updated_at);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeletedAt() : DateTime
+    {
+        return $this->getAttribute('deleted_at');
+    }
+
+    /**
+     * @param \DateTime $deleted_at
+     *
+     * @return JobTag
+     */
+    public function setDeletedAt(DateTime $deleted_at) : JobTag
+    {
+        $this->setAttribute('deleted_at', $deleted_at);
+        return $this;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -50,101 +179,5 @@ class JobTag extends Pivot
     public function tag() : BelongsTo
     {
         return $this->belongsTo(Tag::class);
-    }
-
-    /**
-     * @return int
-     */
-    public function getId() : int
-    {
-        return $this->getAttribute('id');
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id) : void
-    {
-        $this->setAttribute('id', $id);
-    }
-
-    /**
-     * @return int
-     */
-    public function getJobId() : int
-    {
-        return $this->getAttribute('job_id');
-    }
-
-    /**
-     * @param int $job_id
-     */
-    public function setJobId(int $job_id) : void
-    {
-        $this->setAttribute('job_id', $job_id);
-    }
-
-    /**
-     * @return int
-     */
-    public function getTagId() : int
-    {
-        return $this->getAttribute('tag_id');
-    }
-
-    /**
-     * @param int $tag_id
-     */
-    public function setTagId(int $tag_id) : void
-    {
-        $this->setAttribute('tag_id', $tag_id);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt() : DateTime
-    {
-        return $this->getAttribute('created_at');
-    }
-
-    /**
-     * @param \DateTime $created_at
-     */
-    public function setCreatedAt(DateTime $created_at) : void
-    {
-        $this->setAttribute('created_at', $created_at);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt() : DateTime
-    {
-        return $this->getAttribute('updated_at');
-    }
-
-    /**
-     * @param \DateTime $updated_at
-     */
-    public function setUpdatedAt(DateTime $updated_at) : void
-    {
-        $this->setAttribute('updated_at', $updated_at);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDeletedAt() : DateTime
-    {
-        return $this->getAttribute('deleted_at');
-    }
-
-    /**
-     * @param \DateTime $deleted_at
-     */
-    public function setDeletedAt(DateTime $deleted_at) : void
-    {
-        $this->setAttribute('deleted_at', $deleted_at);
     }
 }

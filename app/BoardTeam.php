@@ -35,6 +35,21 @@ class BoardTeam extends Pivot
      * @var \DateTime
      */
     protected $deleted_at;
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'board_id',
+        'team_id',
+    ];
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
 
     /**
      * @return int
@@ -46,10 +61,13 @@ class BoardTeam extends Pivot
 
     /**
      * @param int $id
+     *
+     * @return BoardTeam
      */
-    public function setId(int $id) : void
+    public function setId(int $id) : BoardTeam
     {
         $this->setAttribute('id', $id);
+        return $this;
     }
 
     /**
@@ -62,10 +80,13 @@ class BoardTeam extends Pivot
 
     /**
      * @param int $board_id
+     *
+     * @return BoardTeam
      */
-    public function setBoardId(int $board_id) : void
+    public function setBoardId(int $board_id) : BoardTeam
     {
         $this->setAttribute('board_id', $board_id);
+        return $this;
     }
 
     /**
@@ -78,10 +99,13 @@ class BoardTeam extends Pivot
 
     /**
      * @param int $team_id
+     *
+     * @return BoardTeam
      */
-    public function setTeamId(int $team_id) : void
+    public function setTeamId(int $team_id) : BoardTeam
     {
         $this->setAttribute('team_id', $team_id);
+        return $this;
     }
 
     /**
@@ -94,10 +118,13 @@ class BoardTeam extends Pivot
 
     /**
      * @param \DateTime $created_at
+     *
+     * @return BoardTeam
      */
-    public function setCreatedAt(DateTime $created_at) : void
+    public function setCreatedAt(DateTime $created_at) : BoardTeam
     {
         $this->setAttribute('created_at', $created_at);
+        return $this;
     }
 
     /**
@@ -110,10 +137,13 @@ class BoardTeam extends Pivot
 
     /**
      * @param \DateTime $updated_at
+     *
+     * @return BoardTeam
      */
-    public function setUpdatedAt(DateTime $updated_at) : void
+    public function setUpdatedAt(DateTime $updated_at) : BoardTeam
     {
         $this->setAttribute('updated_at', $updated_at);
+        return $this;
     }
 
     /**
@@ -126,11 +156,15 @@ class BoardTeam extends Pivot
 
     /**
      * @param \DateTime $deleted_at
+     *
+     * @return BoardTeam
      */
-    public function setDeletedAt(DateTime $deleted_at) : void
+    public function setDeletedAt(DateTime $deleted_at) : BoardTeam
     {
         $this->setAttribute('deleted_at', $deleted_at);
+        return $this;
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

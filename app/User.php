@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -77,12 +78,120 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at'        => 'datetime',
+        'updated_at'        => 'datetime',
+        'deleted_at'        => 'datetime',
     ];
+
+    /**
+     * @return int
+     */
+    public function getId() : int
+    {
+        return $this->getAttribute('id');
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return User
+     */
+    public function setId(int $id) : User
+    {
+        $this->setAttribute('id', $id);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() : string
+    {
+        return $this->getAttribute('name');
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName(string $name) : User
+    {
+        $this->setAttribute('name', $name);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail() : string
+    {
+        return $this->getAttribute('email');
+    }
+
+    /**
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail(string $email) : User
+    {
+        $this->setAttribute('email', $email);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword() : string
+    {
+        return $this->getAttribute('password');
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEmailVerifiedAt() : DateTime
+    {
+        return $this->getAttribute('email_verified_at');
+    }
+
+    /**
+     * @return string
+     */
+    public function getRememberToken() : string
+    {
+        return $this->getAttribute('remember_token');
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt() : DateTime
+    {
+        return $this->getAttribute('created_at');
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt() : DateTime
+    {
+        return $this->getAttribute('updated_at');
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeletedAt() : DateTime
+    {
+        return $this->getAttribute('deleted_at');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function jobs(): BelongsToMany
+    public function jobs() : BelongsToMany
     {
         return $this->belongsToMany(Job::class)->using(JobUser::class);
     }
@@ -90,8 +199,16 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function statuses(): BelongsToMany
+    public function statuses() : BelongsToMany
     {
         return $this->belongsToMany(Status::class)->using(JobUser::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function organisations() : BelongsToMany
+    {
+        return $this->belongsToMany(Organisation::class)->using(OrganisationUser::class);
     }
 }

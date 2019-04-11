@@ -39,6 +39,22 @@ class JobUser extends Pivot
      * @var \DateTime
      */
     protected $deleted_at;
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'job_id',
+        'user_id',
+        'status_id',
+    ];
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
 
     /**
      * @return int
@@ -50,10 +66,13 @@ class JobUser extends Pivot
 
     /**
      * @param int $id
+     *
+     * @return JobUser
      */
-    public function setId(int $id) : void
+    public function setId(int $id) : JobUser
     {
         $this->setAttribute('id', $id);
+        return $this;
     }
 
     /**
@@ -66,10 +85,13 @@ class JobUser extends Pivot
 
     /**
      * @param int $job_id
+     *
+     * @return JobUser
      */
-    public function setJobId(int $job_id) : void
+    public function setJobId(int $job_id) : JobUser
     {
         $this->setAttribute('job_id', $job_id);
+        return $this;
     }
 
     /**
@@ -82,58 +104,13 @@ class JobUser extends Pivot
 
     /**
      * @param int $user_id
+     *
+     * @return JobUser
      */
-    public function setUserId(int $user_id) : void
+    public function setUserId(int $user_id) : JobUser
     {
         $this->setAttribute('user_id', $user_id);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt() : DateTime
-    {
-        return $this->getAttribute('created_at');
-    }
-
-    /**
-     * @param \DateTime $created_at
-     */
-    public function setCreatedAt(DateTime $created_at) : void
-    {
-        $this->setAttribute('created_at', $created_at);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt() : DateTime
-    {
-        return $this->getAttribute('updated_at');
-    }
-
-    /**
-     * @param \DateTime $updated_at
-     */
-    public function setUpdatedAt(DateTime $updated_at) : void
-    {
-        $this->setAttribute('updated_at', $updated_at);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDeletedAt() : DateTime
-    {
-        return $this->getAttribute('deleted_at');
-    }
-
-    /**
-     * @param \DateTime $deleted_at
-     */
-    public function setDeletedAt(DateTime $deleted_at) : void
-    {
-        $this->setAttribute('deleted_at', $deleted_at);
+        return $this;
     }
 
     /**
@@ -146,10 +123,70 @@ class JobUser extends Pivot
 
     /**
      * @param int $status_id
+     *
+     * @return JobUser
      */
-    public function setStatusId(int $status_id) : void
+    public function setStatusId(int $status_id) : JobUser
     {
         $this->setAttribute('status_id', $status_id);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt() : DateTime
+    {
+        return $this->getAttribute('created_at');
+    }
+
+    /**
+     * @param \DateTime $created_at
+     *
+     * @return JobUser
+     */
+    public function setCreatedAt(DateTime $created_at) : JobUser
+    {
+        $this->setAttribute('created_at', $created_at);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt() : DateTime
+    {
+        return $this->getAttribute('updated_at');
+    }
+
+    /**
+     * @param \DateTime $updated_at
+     *
+     * @return JobUser
+     */
+    public function setUpdatedAt(DateTime $updated_at) : JobUser
+    {
+        $this->setAttribute('updated_at', $updated_at);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeletedAt() : DateTime
+    {
+        return $this->getAttribute('deleted_at');
+    }
+
+    /**
+     * @param \DateTime $deleted_at
+     *
+     * @return JobUser
+     */
+    public function setDeletedAt(DateTime $deleted_at) : JobUser
+    {
+        $this->setAttribute('deleted_at', $deleted_at);
+        return $this;
     }
 
     /**

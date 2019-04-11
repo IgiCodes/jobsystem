@@ -3,31 +3,23 @@
 namespace App;
 
 use DateTime;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Organisation extends Model
+class OrganisationUser extends Pivot
 {
-    use SoftDeletes;
-
     /**
      * @var integer
      */
     protected $id;
     /**
-     * @var string
+     * @var integer
      */
-    protected $name;
-    /**
-     * @var string
-     */
-    protected $slug;
+    protected $organisation_id;
     /**
      * @var integer
      */
-    protected $created_by_user_id;
+    protected $user_id;
     /**
      * @var \DateTime
      */
@@ -44,8 +36,8 @@ class Organisation extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'slug',
+        'organisation_id',
+        'user_id',
     ];
     /**
      * @var array
@@ -67,49 +59,49 @@ class Organisation extends Model
     /**
      * @param int $id
      *
-     * @return Organisation
+     * @return OrganisationUser
      */
-    public function setId(int $id) : Organisation
+    public function setId(int $id) : OrganisationUser
     {
         $this->setAttribute('id', $id);
         return $this;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName() : string
+    public function getOrganisationId() : int
     {
-        return $this->getAttribute('name');
+        return $this->getAttribute('organisation_id');
     }
 
     /**
-     * @param string $name
+     * @param int $organisation_id
      *
-     * @return Organisation
+     * @return OrganisationUser
      */
-    public function setName(string $name) : Organisation
+    public function setOrganisationId(int $organisation_id) : OrganisationUser
     {
-        $this->setAttribute('name', $name);
+        $this->setAttribute('organisation_id', $organisation_id);
         return $this;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getSlug() : string
+    public function getUserId() : int
     {
-        return $this->getAttribute('slug');
+        return $this->getAttribute('user_id');
     }
 
     /**
-     * @param string $slug
+     * @param int $user_id
      *
-     * @return Organisation
+     * @return OrganisationUser
      */
-    public function setSlug(string $slug) : Organisation
+    public function setUserId(int $user_id) : OrganisationUser
     {
-        $this->setAttribute('slug', $slug);
+        $this->setAttribute('user_id', $user_id);
         return $this;
     }
 
@@ -140,16 +132,16 @@ class Organisation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function createdByUser() : BelongsTo
+    public function organisation() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by_user_id');
+        return $this->belongsTo(Organisation::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function users() : BelongsToMany
+    public function user() : BelongsTo
     {
-        return $this->belongsToMany(User::class)->using(OrganisationUser::class);
+        return $this->belongsTo(User::class);
     }
 }

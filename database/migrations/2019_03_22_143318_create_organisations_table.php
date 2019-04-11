@@ -15,6 +15,10 @@ class CreateOrganisationsTable extends Migration
     {
         Schema::create('organisations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('slug');
+            $table->unsignedBigInteger('created_by_user_id')->nullable();
+            $table->foreign('created_by_user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
